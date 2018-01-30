@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                tools:context="com.adriangl.overlayhelperexample.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/draw_overlays_status_container"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Draw overlays status:"
+            tools:ignore="HardcodedText"/>
+
+        <TextView
+            android:id="@+id/draw_overlays_status_value"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/request_draw_overlays_button"
+        android:layout_below="@id/draw_overlays_status_container"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Request permissions"
+        tools:ignore="HardcodedText"/>
+
+</RelativeLayout>
