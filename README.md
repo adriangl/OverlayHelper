@@ -30,11 +30,11 @@ Add the following dependencies to your app's `build.gradle`:
     }
     ```
 
-## Usage
+## Example usage
 
 * Create a new _OverlayHelper_ with a _OverlayPermissionChangedListener_.
 * Start watching settings changes with _OverlayHelper.startWatching()_, for example in _onCreate()_.
-* Stop watching changes with _OverlayHelper.stopWatching()_ _onDestroy()_.
+* Stop watching changes with _OverlayHelper.stopWatching()_ in _onDestroy()_.
 * If you want to check if the app has their "draw overlays" permission enabled, use _OverlayHelper.canDrawOverlays()_.
 * Call _OverlayHelper.requestDrawOverlaysPermission()_ wherever you want in your activity. You'll have to also add  _OverlayHelper.onRequestDrawOverlaysPermissionResult(int)_ in the activity's _onActivityResult()_, so the helper can retrieve the needed data.
 * You'll receive your permission results in the _OverlayPermissionChangedListener_ that you registered when creating the helper.
