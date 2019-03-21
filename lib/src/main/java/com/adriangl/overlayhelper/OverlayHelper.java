@@ -11,13 +11,14 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresPermission;
-import android.support.annotation.StringRes;
 
 import java.util.Arrays;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresPermission;
+import androidx.annotation.StringRes;
 
 /**
  * Helper class that takes care of querying and requesting permissions for drawing over other apps.
@@ -54,8 +55,11 @@ public class OverlayHelper {
         this.context = ctx.getApplicationContext();
         this.overlayPermissionChangedListener = listener;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // API 26+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            // API 28+: The checks return to API 23-like behaviour
+            this.overlayDelegate = new OverlayDelegate.PieOverlayDelegate(context);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // API 26+: Fucks up checks, so we need to store the values of the alert window setting in the delegate
             this.overlayDelegate = new OverlayDelegate.OreoOverlayDelegate(context);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             // API 23+: check if the user has explicitly enabled overlays

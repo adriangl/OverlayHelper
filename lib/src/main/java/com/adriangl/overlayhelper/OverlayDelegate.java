@@ -4,8 +4,8 @@ import android.app.AppOpsManager;
 import android.content.Context;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.annotation.RequiresApi;
-import android.support.annotation.RequiresPermission;
+import androidx.annotation.RequiresApi;
+import androidx.annotation.RequiresPermission;
 
 /**
  * Interface used to implement custom overlay checking behaviour depending on device version.
@@ -129,6 +129,30 @@ interface OverlayDelegate {
         @RequiresPermission(android.Manifest.permission.SYSTEM_ALERT_WINDOW)
         public boolean canDrawOverlays() {
             return canDrawOverlays;
+        }
+    }
+
+    /**
+     * Implementation of {@link OverlayDelegate} for devices with API level >= 28.
+     */
+    @RequiresApi(api = Build.VERSION_CODES.P)
+    class PieOverlayDelegate implements OverlayDelegate {
+        private final Context context;
+
+        PieOverlayDelegate(Context context) {
+            this.context = context;
+        }
+
+        @Override public void startWatching() {
+            // No-op
+        }
+
+        @Override public void stopWatching() {
+            // No-op
+        }
+
+        @Override public boolean canDrawOverlays() {
+            return Settings.canDrawOverlays(context);
         }
     }
 }

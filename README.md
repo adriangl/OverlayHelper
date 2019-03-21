@@ -19,14 +19,14 @@ Add the following dependencies to your app's `build.gradle`:
 * For Gradle < 4.0
     ```groovy
     dependencies {
-        compile "com.github.adriangl:overlayhelper:1.0.0"
+        compile "com.github.adriangl:overlayhelper:1.1.0"
     }
     ```
 
 * For Gradle 4.0+
     ```groovy
     dependencies {
-        implementation "com.github.adriangl:overlayhelper:1.0.0"
+        implementation "com.github.adriangl:overlayhelper:1.1.0"
     }
     ```
 
