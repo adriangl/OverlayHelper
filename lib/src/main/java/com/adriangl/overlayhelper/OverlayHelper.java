@@ -54,8 +54,11 @@ public class OverlayHelper {
         this.context = ctx.getApplicationContext();
         this.overlayPermissionChangedListener = listener;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // API 26+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            // API 28+: The checks return to API 23-like behaviour
+            this.overlayDelegate = new OverlayDelegate.PieOverlayDelegate(context);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // API 26+: Fucks up checks, so we need to store the values of the alert window setting in the delegate
             this.overlayDelegate = new OverlayDelegate.OreoOverlayDelegate(context);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             // API 23+: check if the user has explicitly enabled overlays

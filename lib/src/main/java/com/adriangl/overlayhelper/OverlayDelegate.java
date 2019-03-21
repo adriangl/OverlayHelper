@@ -131,4 +131,28 @@ interface OverlayDelegate {
             return canDrawOverlays;
         }
     }
+
+    /**
+     * Implementation of {@link OverlayDelegate} for devices with API level >= 28.
+     */
+    @RequiresApi(api = Build.VERSION_CODES.P)
+    class PieOverlayDelegate implements OverlayDelegate {
+        private final Context context;
+
+        PieOverlayDelegate(Context context) {
+            this.context = context;
+        }
+
+        @Override public void startWatching() {
+            // No-op
+        }
+
+        @Override public void stopWatching() {
+            // No-op
+        }
+
+        @Override public boolean canDrawOverlays() {
+            return Settings.canDrawOverlays(context);
+        }
+    }
 }
